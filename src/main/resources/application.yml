@@ -1,0 +1,54 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: TestService
+  config:
+    import: "consul:localhost:8500"
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        fail-fast: true
+        profile-separator: '-'
+      discovery:
+        enabled: true
+        register: true
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}-${random.value}
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        health-check-timeout: 3s
+        health-check-critical-timeout: 2m
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      access: unrestricted
+  zipkin:
+    tracing:
+      endpoint: http://<zipkin>:9411/api/v2/spans
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html           # where Swagger UI will be available
+    tags-sorter: alpha
+    operations-sorter: alpha
+    doc-expansion: none
+  api-docs:
+    path: /v3/api-docs

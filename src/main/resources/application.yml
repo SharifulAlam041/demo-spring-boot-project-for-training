@@ -24,24 +24,24 @@ spring:
         health-check-timeout: 3s
         health-check-critical-timeout: 2m
 
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-  endpoints:
-    web:
-      exposure:
-        include: health,info,prometheus
-  endpoint:
-    prometheus:
-      access: unrestricted
-  zipkin:
-    tracing:
-      endpoint: http://<zipkin>:9411/api/v2/spans
-  prometheus:
-    metrics:
-      export:
-        enabled: true
+# management:
+#   tracing:
+#     sampling:
+#       probability: 1.0
+#   endpoints:
+#     web:
+#       exposure:
+#         include: health,info,prometheus
+#   endpoint:
+#     prometheus:
+#       access: unrestricted
+#   zipkin:
+#     tracing:
+#       endpoint: http://<zipkin>:9411/api/v2/spans
+#   prometheus:
+#     metrics:
+#       export:
+#         enabled: true
 
 
 springdoc:

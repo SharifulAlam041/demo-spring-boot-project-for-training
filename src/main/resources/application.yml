@@ -4,10 +4,10 @@ spring:
   application:
     name: TestService
   config:
-    import: "consul:localhost:8500"
+    import: "consul:172.16.49.48:8500"
   cloud:
     consul:
-      host: localhost
+      host: 172.16.49.48
       port: 8500
       config:
         enabled: true
